@@ -1,9 +1,9 @@
 package dto;
 
 import domain.bet.Betting;
-import domain.hitStrategy.HitStrategy;
 import domain.participants.Participant;
 import domain.participants.Player;
+import domain.strategy.HitStrategy;
 
 public record PlayerCreateDto(
         String name,

@@ -2,10 +2,10 @@ package domain.participants;
 
 import domain.card.Hand;
 import domain.card.vo.Card;
-import domain.hitStrategy.HitStrategy;
 import domain.state.Started;
 import domain.state.State;
 import domain.state.generator.FinishedStateGenerator;
+import domain.strategy.HitStrategy;
 import java.util.List;
 
 public abstract class Participant {

@@ -1,7 +1,7 @@
 import static org.assertj.core.api.Assertions.assertThat;
 
 import controller.BlackjackController;
-import domain.card.deckMaker.OneDeckMaker;
+import domain.deck.maker.OneDeckMaker;
 import domain.participants.Dealer;
 import domain.participants.Player;
 import domain.state.generator.BlackjackGenerator;

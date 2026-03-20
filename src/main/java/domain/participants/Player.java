@@ -1,8 +1,8 @@
 package domain.participants;
 
 import domain.bet.Betting;
-import domain.hitStrategy.HitStrategy;
-import domain.hitStrategy.UntilBustHitStrategy;
+import domain.strategy.HitStrategy;
+import domain.strategy.UntilBustHitStrategy;
 
 public class Player extends Participant {
     private static final HitStrategy DEFAULT_HIT_STRATEGY = new UntilBustHitStrategy();

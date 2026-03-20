@@ -6,6 +6,7 @@ import domain.TestFixture;
 import domain.card.vo.Card;
 import domain.card.vo.Rank;
 import domain.card.vo.Suit;
+import domain.deck.Deck;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;

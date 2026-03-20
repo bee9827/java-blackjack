@@ -2,10 +2,10 @@ package domain;
 
 import domain.bet.Betting;
 import domain.card.Hand;
-import domain.card.deckMaker.DeckMaker;
-import domain.card.deckMaker.OneDeckMaker;
 import domain.card.vo.Card;
 import domain.card.vo.Rank;
+import domain.deck.maker.DeckMaker;
+import domain.deck.maker.OneDeckMaker;
 import domain.participants.Dealer;
 import domain.participants.Player;
 import domain.state.Started;

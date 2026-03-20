@@ -3,7 +3,7 @@ package domain.participants;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import domain.bet.Betting;
-import domain.hitStrategy.UntilBustHitStrategy;
+import domain.strategy.UntilBustHitStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.params.ParameterizedTest;

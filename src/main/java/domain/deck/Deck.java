@@ -1,7 +1,7 @@
-package domain.card;
+package domain.deck;
 
-import domain.card.deckMaker.DeckMaker;
 import domain.card.vo.Card;
+import domain.deck.maker.DeckMaker;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.HashSet;

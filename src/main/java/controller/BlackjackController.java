@@ -1,15 +1,15 @@
 package controller;
 
 import domain.bet.Betting;
-import domain.card.Deck;
 import domain.card.Hand;
-import domain.card.deckMaker.DeckMaker;
-import domain.hitStrategy.CasinoDealerHitStrategy;
-import domain.hitStrategy.HitStrategy;
+import domain.deck.Deck;
+import domain.deck.maker.DeckMaker;
 import domain.participants.Dealer;
 import domain.participants.Participant;
 import domain.participants.Player;
 import domain.state.generator.FinishedStateGenerator;
+import domain.strategy.CasinoDealerHitStrategy;
+import domain.strategy.HitStrategy;
 import dto.DealerDrawDto;
 import dto.NamesDto;
 import dto.PlayerCardsDto;
@@ -32,7 +32,9 @@ public class BlackjackController {
         this.outputView = outputView;
     }
 
-    public void start(final DeckMaker deckMaker, HitStrategy dealerStrategy, HitStrategy playerHitStrategy,
+    public void start(final DeckMaker deckMaker,
+                      HitStrategy dealerStrategy,
+                      HitStrategy playerHitStrategy,
                       List<FinishedStateGenerator> finishedStateGenerators) {
         Deck deck = Deck.createFromDeckMaker(deckMaker);
         Participant dealer = new Dealer(dealerStrategy);

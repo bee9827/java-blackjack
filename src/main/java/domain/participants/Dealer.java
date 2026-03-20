@@ -1,7 +1,7 @@
 package domain.participants;
 
-import domain.hitStrategy.CasinoDealerHitStrategy;
-import domain.hitStrategy.HitStrategy;
+import domain.strategy.CasinoDealerHitStrategy;
+import domain.strategy.HitStrategy;
 
 //추상 클래스
 public class Dealer extends Participant {

@@ -1,12 +1,12 @@
 import controller.BlackjackController;
-import domain.card.deckMaker.DeckMaker;
-import domain.card.deckMaker.OneRandomDeckMaker;
-import domain.hitStrategy.HitStrategy;
+import domain.deck.maker.DeckMaker;
+import domain.deck.maker.OneRandomDeckMaker;
 import domain.participants.Dealer;
 import domain.participants.Player;
 import domain.state.generator.BlackjackGenerator;
 import domain.state.generator.BustGenerator;
 import domain.state.generator.FinishedStateGenerator;
+import domain.strategy.HitStrategy;
 import java.util.List;
 import view.InputView;
 import view.OutputView;

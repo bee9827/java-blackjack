@@ -1,6 +1,7 @@
 package domain.card;
 
 import domain.card.vo.Card;
+import domain.deck.Deck;
 import domain.score.Score;
 import java.util.ArrayList;
 import java.util.Collections;
