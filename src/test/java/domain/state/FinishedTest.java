@@ -19,90 +19,98 @@ class FinishedTest {
 
     public static Stream<Arguments> earningRate() {
         return Stream.of(
-                Arguments.of(new Stay(TestFixture.createHandByRank(List.of(Rank.KING, Rank.EIGHT))), Result.WIN, 10000,
+                Arguments.of(new Stay(TestFixture.createHandByRank(List.of(Rank.KING, Rank.EIGHT))), MatchResult.WIN,
+                        10000,
                         10000),
-                Arguments.of(new Stay(TestFixture.createHandByRank(List.of(Rank.TWO, Rank.EIGHT))), Result.DRAW, 10000,
+                Arguments.of(new Stay(TestFixture.createHandByRank(List.of(Rank.TWO, Rank.EIGHT))), MatchResult.DRAW,
+                        10000,
                         0),
-                Arguments.of(new Stay(TestFixture.createHandByRank(List.of(Rank.TWO, Rank.EIGHT))), Result.LOSE, 10000,
+                Arguments.of(new Stay(TestFixture.createHandByRank(List.of(Rank.TWO, Rank.EIGHT))), MatchResult.LOSE,
+                        10000,
                         -10000),
 
-                Arguments.of(new Bust(TestFixture.createHandByRank(List.of(Rank.TWO, Rank.EIGHT))), Result.WIN, 10000,
+                Arguments.of(new Bust(TestFixture.createHandByRank(List.of(Rank.TWO, Rank.EIGHT))), MatchResult.WIN,
+                        10000,
                         -10000),
-                Arguments.of(new Bust(TestFixture.createHandByRank(List.of(Rank.TWO, Rank.EIGHT))), Result.DRAW, 10000,
+                Arguments.of(new Bust(TestFixture.createHandByRank(List.of(Rank.TWO, Rank.EIGHT))), MatchResult.DRAW,
+                        10000,
                         -10000),
-                Arguments.of(new Bust(TestFixture.createHandByRank(List.of(Rank.TWO, Rank.EIGHT))), Result.LOSE, 10000,
+                Arguments.of(new Bust(TestFixture.createHandByRank(List.of(Rank.TWO, Rank.EIGHT))), MatchResult.LOSE,
+                        10000,
                         -10000),
 
-                Arguments.of(new Blackjack(TestFixture.createHandByRank(List.of(Rank.TWO, Rank.EIGHT))), Result.WIN,
+                Arguments.of(new Blackjack(TestFixture.createHandByRank(List.of(Rank.TWO, Rank.EIGHT))),
+                        MatchResult.WIN,
                         10000, 15000),
-                Arguments.of(new Blackjack(TestFixture.createHandByRank(List.of(Rank.TWO, Rank.EIGHT))), Result.DRAW,
+                Arguments.of(new Blackjack(TestFixture.createHandByRank(List.of(Rank.TWO, Rank.EIGHT))),
+                        MatchResult.DRAW,
                         10000, 0)
         );
     }
 
-    public static Stream<Arguments> getResult() {
+    public static Stream<Arguments> judgeResult() {
         return Stream.of(
                 Arguments.of(
                         new Blackjack(TestFixture.createHandByRank(List.of(Rank.KING, Rank.ACE))),
                         new Stay(TestFixture.createHandByRank(List.of(Rank.KING, Rank.KING))),
-                        Result.WIN),
+                        MatchResult.WIN),
                 Arguments.of(
                         new Blackjack(TestFixture.createHandByRank(List.of(Rank.KING, Rank.ACE))),
                         new Bust(TestFixture.createHandByRank(List.of(Rank.KING, Rank.KING))),
-                        Result.WIN),
+                        MatchResult.WIN),
                 Arguments.of(
                         new Blackjack(TestFixture.createHandByRank(List.of(Rank.KING, Rank.ACE))),
                         new Blackjack(TestFixture.createHandByRank(List.of(Rank.KING, Rank.ACE))),
-                        Result.DRAW),
+                        MatchResult.DRAW),
 
                 Arguments.of(
                         new Stay(TestFixture.createHandByRank(List.of(Rank.KING, Rank.KING))),
                         new Stay(TestFixture.createHandByRank(List.of(Rank.KING, Rank.NINE))),
-                        Result.WIN),
+                        MatchResult.WIN),
                 Arguments.of(
                         new Stay(TestFixture.createHandByRank(List.of(Rank.KING, Rank.KING))),
                         new Stay(TestFixture.createHandByRank(List.of(Rank.KING, Rank.KING))),
-                        Result.DRAW),
+                        MatchResult.DRAW),
                 Arguments.of(
                         new Stay(TestFixture.createHandByRank(List.of(Rank.KING, Rank.NINE))),
                         new Stay(TestFixture.createHandByRank(List.of(Rank.KING, Rank.KING))),
-                        Result.LOSE),
+                        MatchResult.LOSE),
                 Arguments.of(
                         new Stay(TestFixture.createHandByRank(List.of(Rank.KING, Rank.ACE))),
                         new Bust(TestFixture.createHandByRank(List.of(Rank.KING, Rank.KING))),
-                        Result.WIN),
+                        MatchResult.WIN),
                 Arguments.of(
                         new Stay(TestFixture.createHandByRank(List.of(Rank.KING, Rank.KING))),
                         new Blackjack(TestFixture.createHandByRank(List.of(Rank.KING, Rank.ACE))),
-                        Result.LOSE),
+                        MatchResult.LOSE),
 
                 Arguments.of(
                         new Blackjack(TestFixture.createHandByRank(List.of(Rank.KING, Rank.ACE))),
                         new Stay(TestFixture.createHandByRank(List.of(Rank.KING, Rank.KING))),
-                        Result.WIN),
+                        MatchResult.WIN),
                 Arguments.of(
                         new Blackjack(TestFixture.createHandByRank(List.of(Rank.KING, Rank.ACE))),
                         new Bust(TestFixture.createHandByRank(List.of(Rank.KING, Rank.KING))),
-                        Result.WIN),
+                        MatchResult.WIN),
                 Arguments.of(
                         new Blackjack(TestFixture.createHandByRank(List.of(Rank.KING, Rank.ACE))),
                         new Blackjack(TestFixture.createHandByRank(List.of(Rank.KING, Rank.ACE))),
-                        Result.DRAW)
+                        MatchResult.DRAW)
         );
     }
 
     @ParameterizedTest
     @MethodSource
     @DisplayName("earningRate(Result, Integer): 결과에 따라 수익률을 반환한다.")
-    void earningRate(Finished state, Result result, Integer betCost, Integer expected) {
-        Integer earnCost = state.earningRate(result).apply(betCost);
+    void earningRate(Finished state, MatchResult matchResult, Integer betCost, Integer expected) {
+        Integer earnCost = state.earningRate(matchResult).apply(betCost);
         assertThat(earnCost).isEqualTo(expected);
     }
 
     @ParameterizedTest
     @DisplayName("getResult(): 승패를 반환한다.")
     @MethodSource
-    void getResult(Finished playerState, State dealerState, Result expected) {
-        assertThat(playerState.getResult(dealerState)).isEqualTo(expected);
+    void judgeResult(Finished playerState, State dealerState, MatchResult expected) {
+        assertThat(playerState.judgeResult(dealerState)).isEqualTo(expected);
     }
 }

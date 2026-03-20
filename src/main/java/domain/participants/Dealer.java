@@ -3,16 +3,16 @@ package domain.participants;
 import domain.strategy.CasinoDealerHitStrategy;
 import domain.strategy.HitStrategy;
 
-//추상 클래스
 public class Dealer extends Participant {
     private static final String NAME = "딜러";
     private static final HitStrategy DEFAULT_HIT_STRATEGY = new CasinoDealerHitStrategy();
+
+    public Dealer() {
+        super(NAME, DEFAULT_HIT_STRATEGY);
+    }
 
     public Dealer(HitStrategy hitStrategy) {
         super(NAME, hitStrategy);
     }
 
-    public static HitStrategy getDefaultHitStrategy() {
-        return DEFAULT_HIT_STRATEGY;
-    }
 }

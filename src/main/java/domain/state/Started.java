@@ -14,12 +14,20 @@ public abstract class Started implements State {
     }
 
     public static State getStartState(List<FinishedStateGenerator> finishedStateGenerators, Hand hand) {
-        for (FinishedStateGenerator finishedStateGenerator : finishedStateGenerators) {
-            if (finishedStateGenerator.supports(hand)) {
-                return finishedStateGenerator.create(hand);
-            }
+        FinishedStateGenerator finishedStateGenerator =
+                findSupportFinishedStateGenerator(finishedStateGenerators, hand);
+        if (finishedStateGenerator != null) {
+            return finishedStateGenerator.create(hand);
         }
         return new Hit(hand);
+    }
+
+    private static FinishedStateGenerator findSupportFinishedStateGenerator(
+            List<FinishedStateGenerator> finishedStateGenerators, Hand hand) {
+        return finishedStateGenerators.stream()
+                .filter(generator -> generator.supports(hand))
+                .findAny()
+                .orElse(null);
     }
 
     @Override

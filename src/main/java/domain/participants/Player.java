@@ -14,8 +14,9 @@ public class Player extends Participant {
         this.betting = betting;
     }
 
-    public static HitStrategy getDefaultHitStrategy() {
-        return DEFAULT_HIT_STRATEGY;
+    public Player(String name, Betting betting) {
+        super(name, DEFAULT_HIT_STRATEGY);
+        this.betting = betting;
     }
 
     public Integer getProfit(Participant dealer) {

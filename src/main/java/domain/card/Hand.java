@@ -32,7 +32,7 @@ public class Hand {
         }
     }
 
-    public Score getScore() {
+    public Score calculateScore() {
         Score score = cards.stream()
                 .map(Card::getScore)
                 .reduce(Score::sum)
@@ -62,11 +62,12 @@ public class Hand {
         if (!hasAce(cards)) {
             throw new IllegalStateException("Ace 가 없을때는 AceAdvantage 를 얻을 수 없습니다.");
         }
-        return score.sum(ACE_ADVANTAGE).isHigher(BUST_BOUND_SCORE);
+        return score.sum(ACE_ADVANTAGE)
+                .isHigher(BUST_BOUND_SCORE);
     }
 
     public boolean isBust() {
-        return getScore().isHigher(BUST_BOUND_SCORE);
+        return calculateScore().isHigher(BUST_BOUND_SCORE);
     }
 
     public int getSize() {

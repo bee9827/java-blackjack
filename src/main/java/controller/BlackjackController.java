@@ -1,10 +1,9 @@
 package controller;
 
+import domain.Game;
 import domain.bet.Betting;
-import domain.card.Hand;
 import domain.deck.Deck;
 import domain.deck.maker.DeckMaker;
-import domain.participants.Dealer;
 import domain.participants.Participant;
 import domain.participants.Player;
 import domain.state.generator.FinishedStateGenerator;
@@ -36,15 +35,13 @@ public class BlackjackController {
                       HitStrategy dealerStrategy,
                       HitStrategy playerHitStrategy,
                       List<FinishedStateGenerator> finishedStateGenerators) {
-        Deck deck = Deck.createFromDeckMaker(deckMaker);
-        Participant dealer = new Dealer(dealerStrategy);
-        dealer.startState(finishedStateGenerators, Hand.createFromDeck(deck));
-
-        List<Participant> players = readPlayersInfo().stream()
-                .map(player -> player.toDefaultStrategyPlayer(playerHitStrategy))
-                .toList();
-        players.forEach(p -> p.startState(finishedStateGenerators, Hand.createFromDeck(deck)));
-
+        Game game = Game.makeGame(deckMaker, dealerStrategy, playerHitStrategy, readPlayersInfo(),
+                finishedStateGenerators);
+        game.start();
+        Participant dealer = game.getDealer();
+        List<Participant> players = game.getPlayers();
+        Deck deck = game.getDeck();
+        
         printCards(dealer, players);
         drawPlayerHandAndPrint(players, deck);
         drawDealerHandAndPrint(dealer, deck);
@@ -70,7 +67,7 @@ public class BlackjackController {
 
     private void askToDrawCard(Deck deck, Participant player) {
         while (player.canDraw() && inputView.readNeedToHit(player.getName())) {
-            player.drawCard(deck.drawCard());
+            player.draw(deck.drawCard());
             outputView.showCards(PlayerCardsDto.fromParticipant(player));
         }
         player.stay();
@@ -101,7 +98,7 @@ public class BlackjackController {
 
     private void drawDealerHandAndPrint(Participant dealer, Deck deck) {
         while (dealer.canDraw()) {
-            dealer.drawCard(deck.drawCard());
+            dealer.draw(deck.drawCard());
             outputView.drawDealer(new DealerDrawDto(dealer.getName(), CasinoDealerHitStrategy.BOUNDARY));
             outputView.showCards(PlayerCardsDto.fromParticipant(dealer));
         }

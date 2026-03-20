@@ -24,11 +24,11 @@ public class TestFixture {
             List.of(new BlackjackGenerator(), new BustGenerator());
 
     public static Player createDefaultPlayer() {
-        return new Player("익명", DEFAULT_BETTING, Player.getDefaultHitStrategy());
+        return new Player("익명", DEFAULT_BETTING);
     }
 
     public static Dealer createDefaultDealer() {
-        return new Dealer(Dealer.getDefaultHitStrategy());
+        return new Dealer();
     }
 
     public static List<FinishedStateGenerator> getDefaultStateGenerator() {

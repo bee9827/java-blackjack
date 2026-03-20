@@ -3,7 +3,7 @@ package domain.state.finished;
 import domain.card.Hand;
 import domain.card.vo.Card;
 import domain.score.Score;
-import domain.state.Result;
+import domain.state.MatchResult;
 import domain.state.Started;
 import domain.state.State;
 import java.util.function.Function;
@@ -14,9 +14,9 @@ public abstract class Finished extends Started {
         super(hand);
     }
 
-    abstract public Function<Integer, Integer> earningRate(Result result);
+    abstract public Function<Integer, Integer> earningRate(MatchResult matchResult);
 
-    abstract public Result getResult(State dealerState);
+    abstract public MatchResult judgeResult(State dealerState);
 
     @Override
     public boolean isFinished() {
@@ -32,7 +32,7 @@ public abstract class Finished extends Started {
 
     @Override
     public Score getScore() {
-        return hand.getScore();
+        return hand.calculateScore();
     }
 
     @Override
@@ -42,6 +42,6 @@ public abstract class Finished extends Started {
 
     @Override
     public Integer getProfit(State dealerState, Integer betCost) {
-        return earningRate(getResult(dealerState)).apply(betCost);
+        return earningRate(judgeResult(dealerState)).apply(betCost);
     }
 }

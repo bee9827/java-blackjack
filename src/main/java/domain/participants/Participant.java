@@ -45,7 +45,7 @@ public abstract class Participant {
         state = state.stay();
     }
 
-    public void drawCard(Card card) {
+    public void draw(Card card) {
         if (state == null || !canDraw()) {
             throw new IllegalStateException("카드를 뽑을 수 없는 State 입니다.");
         }

@@ -19,7 +19,7 @@ public abstract class Running extends Started {
 
     @Override
     public Score getScore() {
-        return hand.getScore();
+        return hand.calculateScore();
     }
 
     @Override

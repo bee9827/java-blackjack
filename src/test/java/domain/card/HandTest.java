@@ -48,7 +48,7 @@ class HandTest {
         @MethodSource
         @DisplayName("A를 포함하면서 11이하라면 +10 해서 전달한다. ")
         void ifTotalScoreBelow11(Hand hand, Score score) {
-            assertThat(hand.getScore()).isEqualTo(score);
+            assertThat(hand.calculateScore()).isEqualTo(score);
         }
 
         @ParameterizedTest
@@ -56,7 +56,7 @@ class HandTest {
         @DisplayName("A를 포함하면서 11초과한다면 그냥 전달한다.")
         void ifTotalScoreOver11(Hand hand, Card card, Score score) {
             hand.add(card);
-            assertThat(hand.getScore()).isEqualTo(score);
+            assertThat(hand.calculateScore()).isEqualTo(score);
         }
     }
 }

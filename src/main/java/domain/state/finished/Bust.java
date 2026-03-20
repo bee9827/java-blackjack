@@ -2,7 +2,7 @@ package domain.state.finished;
 
 import domain.card.Hand;
 import domain.score.Score;
-import domain.state.Result;
+import domain.state.MatchResult;
 import domain.state.State;
 import java.util.function.Function;
 
@@ -14,16 +14,16 @@ public class Bust extends Finished {
     }
 
     public static boolean isBust(Hand hand) {
-        return hand.getScore().isHigher(BUST_SCORE_BOUND);
+        return hand.calculateScore().isHigher(BUST_SCORE_BOUND);
     }
 
     @Override
-    public Function<Integer, Integer> earningRate(Result result) {
+    public Function<Integer, Integer> earningRate(MatchResult matchResult) {
         return (n) -> -n;
     }
 
     @Override
-    public Result getResult(State dealerState) {
-        return Result.LOSE;
+    public MatchResult judgeResult(State dealerState) {
+        return MatchResult.LOSE;
     }
 }

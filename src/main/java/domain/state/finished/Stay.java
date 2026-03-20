@@ -1,7 +1,7 @@
 package domain.state.finished;
 
 import domain.card.Hand;
-import domain.state.Result;
+import domain.state.MatchResult;
 import domain.state.State;
 import java.util.function.Function;
 
@@ -11,29 +11,29 @@ public class Stay extends Finished {
     }
 
     @Override
-    public Function<Integer, Integer> earningRate(Result result) {
-        if (Result.WIN.equals(result)) {
+    public Function<Integer, Integer> earningRate(MatchResult matchResult) {
+        if (MatchResult.WIN.equals(matchResult)) {
             return (n) -> n;
         }
-        if (Result.DRAW.equals(result)) {
+        if (MatchResult.DRAW.equals(matchResult)) {
             return (n) -> 0;
         }
-        if (Result.LOSE.equals(result)) {
+        if (MatchResult.LOSE.equals(matchResult)) {
             return (n) -> -n;
         }
         throw new IllegalStateException("Stay의 earningRate 잘못된 접근입니다.");
     }
 
     @Override
-    public Result getResult(State dealerState) {
+    public MatchResult judgeResult(State dealerState) {
         if (dealerState instanceof Bust
                 || this.getScore().isHigher(dealerState.getScore())) {
-            return Result.WIN;
+            return MatchResult.WIN;
         }
         if (dealerState.getScore().isHigher(this.getScore())) {
-            return Result.LOSE;
+            return MatchResult.LOSE;
         }
-        return Result.DRAW;
+        return MatchResult.DRAW;
     }
 
 }
